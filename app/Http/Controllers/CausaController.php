@@ -8,6 +8,8 @@ use App\Models\Fuero;
 use App\Models\Causa;
 use App\Models\Sentencia;
 use App\Models\Oficina;
+use App\Models\Vocalia;
+use App\Models\RespSentencia;
 
 class CausaController extends Controller
 {
@@ -18,68 +20,12 @@ class CausaController extends Controller
      */
     public function index()
     {
-
-
-// para mostrar listado en la Vocalia
-
-/*
-        $sentencias = Sentencia::paginate();
-        $sentencias->load('causa','tiposentencia');
-
-        return view('front.vocalia.index')
-        ->with('sentencias', $sentencias);
-*/
-
-
-//        return view('front.causas.asignar');
-
-/*
-
-//se crea la causa
-        $causa = new Causa();
-        $causa->descripcion = "pingo";
-        $causa->id_fuero = "1"; 
-        $causa->numero_expediente = "112-poronga";
-        $causa->actor_imputado = "el puto";
-        $causa->demandado_victima = "La zorra";
-        $causa->objeto_procesal = "mi verga";
-        $causa->save();
-
-        //dd($causa);
-*/
-
-/*
-
-//se crea la sentencia
-        $sentencia = new Sentencia();
-        $sentencia->id_causa = $causa->id;
-        $sentencia->fecha_sorteo = $causa->created_at;
-        $sentencia->fecha_vencimiento = $causa->created_at;
-        $sentencia->instancia_sentencia = "1";
-        $sentencia->id_tipo = "1";
-        $sentencia->save();
-
-        $sentencia->load('causa');
-*/
-
-//para asignar vocalia
-/*
-        $oficinas = Oficina::where('tipo', 'Vocalia')
-                            ->orderBy('id', 'desc')
-                            ->get();
-
-        return view('front.causas.asignar')
-            ->with('sentencia', $sentencia)
-            ->with('oficinas', $oficinas);
-*/
-        
-
+      
         $causas = Causa::paginate();
         $causas->load('fuero');
         
         return view('front.causas.index')
         ->with('causas', $causas);
-
         
     }
 
@@ -94,10 +40,12 @@ class CausaController extends Controller
         //$fueros = Fuero::orderBy('id', 'desc')->select('descripcion', 'id')->get();
 
         $fueros = Fuero::orderBy('id', 'desc')->get();
+        $vocalias = Vocalia::orderBy('id', 'desc')->get();
        
 
         return view('front.causas.create')
-            ->with('fueros', $fueros);
+            ->with('fueros', $fueros)
+            ->with('vocalias', $vocalias);
     }
 
     /**
@@ -112,7 +60,13 @@ class CausaController extends Controller
 
         //dd($request);
 
-        $causa = new Causa($request->all());
+        $causa = new Causa();
+        $causa->id_fuero = $request->id_fuero;
+        $causa->descripcion = $request->descripcion;
+        $causa->numero_expediente = $request->numero_expediente;
+        $causa->actor_imputado =  $request->actor_imputado;
+        $causa->demandado_victima =  $request->demandado_victima;
+        $causa->objeto_procesal =  $request->objeto_procesal;
 
         //FALTA AGREGAR ANTES DE CREAR LA CAUSA, QUE CORROBORE QUE LA CAUSA NO ESTA CREADA
 
@@ -124,11 +78,15 @@ class CausaController extends Controller
 
         $sentencia = new Sentencia();
         $sentencia->id_causa = $causa->id;
-        $sentencia->fecha_sorteo = $causa->created_at;
-        $sentencia->fecha_vencimiento = $causa->created_at;
+        $sentencia->fecha_sorteo = $request->fecha_sorteo;
+        $sentencia->fecha_vencimiento = $request->fecha_vencimiento;
         $sentencia->instancia_sentencia = "1";
         $sentencia->id_tipo = "1";
         $sentencia->save();
+
+        $RespSentencia = new RespSentencia();
+        $RespSentencia->id_oficina = $request->vocalia;
+        $RespSentencia->save();
 
 
         //$causa = new Causa($request->all());
@@ -145,17 +103,9 @@ class CausaController extends Controller
      */
     public function show($id)
     {
-        $causa = new Causa();
-        $causa->descripcion = "pingo";
-        $causa->id_fuero = "1"; 
-        $causa->numero_expediente = "112-poronga";
-        $causa->actor_imputado = "el puto";
-        $causa->demandado_victima = "La zorra";
-        $causa->objeto_procesal = "mi verga";
-        $causa->save();
 
-        dd($causa);
-        
+        dd($id);
+
     }
 
     /**

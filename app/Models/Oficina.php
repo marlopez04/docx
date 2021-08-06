@@ -18,6 +18,11 @@ class Oficina extends Model
         return $this->hasMany('App\Models\Movimiento');
     }
 
+    public function respsentencias()
+    {
+        return $this->hasMany('App\Models\RespSentencia');
+    }
+
     public function secretarias()
     {
         return $this->hasMany('App\Models\Secretaria');

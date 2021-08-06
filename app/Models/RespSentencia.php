@@ -11,7 +11,7 @@ class RespSentencia extends Model
 
 
     protected $table = "resp_sentencias";
-    protected $fillable = ['id_sentencia','id_usuario'];
+    protected $fillable = ['id_sentencia','id_oficina', 'tipo'];
     
 
     public function sentencia()
@@ -19,9 +19,9 @@ class RespSentencia extends Model
     	return $this->belongsTo('App\Models\Sentencia', 'id_sentencia', 'id');
     }
 
-    public function usuario()
+    public function oficina()
     {
-    	return $this->belongsTo('App\Models\Usuario', 'id_usuario', 'id');
+    	return $this->belongsTo('App\Models\Usuario', 'id_oficina', 'id');
     }
 
 }
