@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('tipo',['Relator', 'Vocalia', 'Secretaria', 'ADMIN'])->default('Relator');
+            $table->enum('tipo',['Relator', 'Vocalia', 'Vocal', 'Secretaria', 'ADMIN'])->default('Relator');
             $table->foreignId('id_oficina')->nullable();
             $table->string('password');
             $table->rememberToken();

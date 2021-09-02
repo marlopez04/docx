@@ -22,6 +22,7 @@ class CreateSentenciasTable extends Migration
             $table->string('instancia_sentencia');
             $table->foreignId('id_tipo')->nullable();
             $table->enum('estado',['Sorteado','En Tramite','Para Firmar', 'Archivada'])->default('Sorteado');
+            $table->string('descripcion');
 
         });
     }

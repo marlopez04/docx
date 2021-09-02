@@ -1,0 +1,25 @@
+ASIGNACION LUEGO DEL SORTEO
+1° resp_sentencia
+-controla si es el primero (pre-opinante) sino conformante
+2°  crea el movimiento
+ - de secretaria a vocalia
+ - motivo = Pre-Opinante
+
+
+ASIGNACION DEL RELATOR
+1° resp_sentencia
+-controla si es el primero (pre-opinante) sino conformante
+2°  crea el movimiento
+ - de secretaria a vocalia
+ - motivo = Pre-Opinante
+
+
+
+id_fuero
+descripcion
+numero_expediente
+actor_imputado
+demandado_victima
+objeto_procesal
+fecha_sorteo
+fecha_vencimiento

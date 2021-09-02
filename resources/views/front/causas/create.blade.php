@@ -20,12 +20,12 @@
                                     
                                     @csrf
                                         <div class="row">                                       
-                                            <div class="col-md-5 pr-1">
+                                            <div class="col-md-6 pr-1">
                                                 <div class="form-group">
 
                                                     <label>Fuero</label>
                                 
-                                                    <select class="form-select" name="id_fuero" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
+                                                    <select class="form-control" name="id_fuero" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
                                                         <option selected></option>
                                                             @foreach ($fueros as $fuero)
 
@@ -36,15 +36,25 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+
+                                                    <label>Objeto Procesal</label>
+                                
+                                                    <select class="form-control" name="id_objeto_procesal" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
+                                                        <option selected></option>
+                                                            @foreach ($OProcesales as $OProcesal)
+
+                                                            <option value="{{$OProcesal->id}}">{{ $OProcesal->descripcion}} </option>
+
+                                                            @endforeach
+
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 pr-1">
-                                                <div class="form-group">
-                                                    <label>Descripcion</label>
-                                                    <input type="text" name="descripcion" class="form-control" placeholder="Descripcion de la causa">
-                                                </div>
-                                            </div>
                                             <div class="col-md-6 pr-1">
                                                 <div class="form-group">
                                                 <label>Numero de Expediente</label>
@@ -63,14 +73,6 @@
                                                 <div class="form-group">
                                                     <label>Demandado / Victima</label>
                                                     <input type="text" name="demandado_victima" class="form-control" placeholder="Demandado / Victima">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                <label>Objeto Procesal</label>
-                                                    <input type="text" name="objeto_procesal" class="form-control" placeholder="Objeto Procesal">
                                                 </div>
                                             </div>
                                         </div>

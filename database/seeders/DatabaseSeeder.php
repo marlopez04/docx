@@ -10,6 +10,7 @@ use App\Models\Secretaria;
 use App\Models\Vocalia;
 use App\Models\Relatoria;
 use App\Models\TipoSentencia;
+use App\Models\ObjetoProcesal;
 
 
 class DatabaseSeeder extends Seeder
@@ -159,16 +160,31 @@ class DatabaseSeeder extends Seeder
         //TIPO-SENTENCIA
 
         $Tsentencia = new TipoSentencia();
-        $Tsentencia->descripcion = "Por Mamila";
+        $Tsentencia->descripcion = "Casación";
         $Tsentencia->save();
 
         $Tsentencia = new TipoSentencia();
-        $Tsentencia->descripcion = "Por Gorreao";
+        $Tsentencia->descripcion = "Excusación";
         $Tsentencia->save();
 
         $Tsentencia = new TipoSentencia();
-        $Tsentencia->descripcion = "Por Gobernao";
+        $Tsentencia->descripcion = "Habeas Corpus";
         $Tsentencia->save();
+
+        //OBJETO-PROCESAL
+
+        $OProcesal = new ObjetoProcesal();
+        $OProcesal->descripcion = "Homicidio";
+        $OProcesal->save();
+
+        $OProcesal = new ObjetoProcesal();
+        $OProcesal->descripcion = "Cobro Ejecutivo";
+        $OProcesal->save();
+
+        $OProcesal = new ObjetoProcesal();
+        $OProcesal->descripcion = "Ejecucion Fiscal";
+        $OProcesal->save();
+        
 
         //USUARIOS
         $usuario = new User();
@@ -266,6 +282,31 @@ class DatabaseSeeder extends Seeder
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
         $usuario->id_oficina = "10";
+        $usuario->save();
+
+
+        $usuario = new User();
+        $usuario->name = "Dra. Sbdar";
+        $usuario->email = "sbdar@pingo.com.ar";
+        $usuario->password = "1234";
+        $usuario->tipo = "Vocal";
+        $usuario->id_oficina = "2";
+        $usuario->save();
+
+        $usuario = new User();
+        $usuario->name = "Dr. Estofan";
+        $usuario->email = "estofan@pingo.com.ar";
+        $usuario->password = "1234";
+        $usuario->tipo = "Vocal";
+        $usuario->id_oficina = "3";
+        $usuario->save();
+
+        $usuario = new User();
+        $usuario->name = "Dr. Posse";
+        $usuario->email = "posse@pingo.com.ar";
+        $usuario->password = "1234";
+        $usuario->tipo = "Vocal";
+        $usuario->id_oficina = "4";
         $usuario->save();
 
     }
