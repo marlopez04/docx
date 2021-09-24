@@ -10,17 +10,17 @@ class Causa extends Model
     use HasFactory;
     
     protected $table = "causas";
-    protected $fillable = ['id_fuero','numero_expediente','actor_imputado','demandado_victima','id_objeto_procesal'];
+    protected $fillable = ['fuero_id','numero_expediente','actor_imputado','demandado_victima','objeto_procesal_id'];
     
 
     public function fuero()
     {
-    	return $this->belongsTo('App\Models\Fuero', 'id_fuero', 'id');
+    	return $this->belongsTo('App\Models\Fuero', 'fuero_id', 'id');
     }
 
     public function objetoprocesal()
     {
-    	return $this->belongsTo('App\Models\ObjetoProcesal', 'id_objeto_procesal', 'id');
+    	return $this->belongsTo('App\Models\ObjetoProcesal', 'objeto_procesal_id', 'id');
     }
 
     public function sentencias()

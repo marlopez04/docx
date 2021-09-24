@@ -23,10 +23,8 @@
                             <th>Actor/imputado</th>
                             <th>Demandado/Victima</th>
                             <th>Objeto Procesal</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Fuero</th>
-                            <th>Descripcion</th>
+                            <th>Fecha y hora asignacion</th>
+                            <th>vencimiento</th>
                         </thead>
                         <tbody>
                         @foreach ($causas as $causa)
@@ -34,12 +32,10 @@
                                 <td>{{ $causa->fuero->descripcion }}</td>
                                 <td>{{ $causa->numero_expediente }}</td>
                                 <td>{{ $causa->actor_imputado }}</td>
-                                <td></td>
-                                <td></td>
-                                <td>{{ $causa->numero_expediente }}</td>
-                                <td>{{ $causa->actor_imputado }}</td>
                                 <td>{{ $causa->demandado_victima }}</td>
                                 <td>{{ $causa->objeto_procesal }}</td>
+                                <td>{{ $causa->created_at }}</td>
+                                <td></td>
                                 <td>
                                 <a href="{{ route('movimientos.show', $causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Asignar</span></a>
                                 </td>

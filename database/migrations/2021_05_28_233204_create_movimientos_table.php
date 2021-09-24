@@ -15,10 +15,10 @@ class CreateMovimientosTable extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_sentencia')->nullable();
+            $table->foreignId('sentencia_id')->nullable();
             $table->foreignId('origen')->nullable();
             $table->foreignId('destino')->nullable();
-            $table->foreignId('id_usuario')->nullable();
+            $table->foreignId('usuario_id')->nullable();
             $table->string('motivo');
             $table->timestamps();
         });

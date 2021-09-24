@@ -10,12 +10,17 @@ class Movimiento extends Model
     use HasFactory;
 
     protected $table = "movimientos";
-    protected $fillable = ['id_sentencia','origen','destino','fecha','motivo', 'id_usuario'];
+    protected $fillable = ['causa_id','sentencia_id','origen','destino','fecha','motivo', 'usuario_id'];
     
+
+    public function causa()
+    {
+    	return $this->belongsTo('App\Models\Causa', 'causa_id', 'id');
+    }
 
     public function sentencia()
     {
-    	return $this->belongsTo('App\Models\Sentencia', 'id_sentencia', 'id');
+    	return $this->belongsTo('App\Models\Sentencia', 'sentencia_id', 'id');
     }
 
     public function origen()
@@ -30,7 +35,7 @@ class Movimiento extends Model
 
     public function usuario()
     {
-    	return $this->belongsTo('App\Models\Usuario', 'id_usuario', 'id');
+    	return $this->belongsTo('App\Models\Usuario', 'usuario_id', 'id');
     }
 
     public function voto()

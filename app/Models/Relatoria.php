@@ -11,17 +11,17 @@ class Relatoria extends Model
 
     
     protected $table = "relatorias";
-    protected $fillable = ['descripcion','id_oficina', 'id_vocalia'];
+    protected $fillable = ['descripcion','oficina_id', 'vocalia_id'];
 
     
     public function oficina()
     {
-    	return $this->belongsTo('App\Models\Oficina', 'id_oficina', 'id');
+    	return $this->belongsTo('App\Models\Oficina', 'oficina_id', 'id');
     }
 
     public function vocalia()
     {
-    	return $this->belongsTo('App\Models\Vocalia', 'id_vocalia', 'id');
+    	return $this->belongsTo('App\Models\Vocalia', 'vocalia_id', 'id');
     }
 
 }

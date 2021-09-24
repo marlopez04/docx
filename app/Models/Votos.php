@@ -10,22 +10,22 @@ class Votos extends Model
     use HasFactory;
 
     protected $table = "votoss";
-    protected $fillable = ['id_sentencia','direccion_archivo','tipo','id_movimiento'];
+    protected $fillable = ['sentencia_id','direccion_archivo','tipo','movimiento_id'];
     
 
     public function sentencia()
     {
-    	return $this->belongsTo('App\Models\Sentencia', 'id_sentencia', 'id');
+    	return $this->belongsTo('App\Models\Sentencia', 'sentencia_id', 'id');
     }
 
     public function usuario()
     {
-    	return $this->belongsTo('App\Models\Usuario', 'id_usuario', 'id');
+    	return $this->belongsTo('App\Models\Usuario', 'usuario_id', 'id');
     }
 
     public function movimiento()
     {
-    	return $this->belongsTo('App\Models\Movimiento', 'id_movimiento', 'id');
+    	return $this->belongsTo('App\Models\Movimiento', 'movimiento_id', 'id');
     }
 
 

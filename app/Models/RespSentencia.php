@@ -11,17 +11,17 @@ class RespSentencia extends Model
 
 
     protected $table = "resp_sentencias";
-    protected $fillable = ['id_sentencia','id_oficina', 'tipo'];
+    protected $fillable = ['sentencia_id','oficina_id', 'tipo'];
     
 
     public function sentencia()
     {
-    	return $this->belongsTo('App\Models\Sentencia', 'id_sentencia', 'id');
+    	return $this->belongsTo('App\Models\Sentencia', 'sentencia_id', 'id');
     }
 
     public function oficina()
     {
-    	return $this->belongsTo('App\Models\Usuario', 'id_oficina', 'id');
+    	return $this->belongsTo('App\Models\Usuario', 'oficina_id', 'id');
     }
 
 }

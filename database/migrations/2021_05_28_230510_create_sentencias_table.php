@@ -16,11 +16,11 @@ class CreateSentenciasTable extends Migration
         Schema::create('sentencias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('id_causa')->nullable();
+            $table->foreignId('causa_id')->nullable();
             $table->date('fecha_sorteo');
             $table->date('fecha_vencimiento');
             $table->string('instancia_sentencia');
-            $table->foreignId('id_tipo')->nullable();
+            $table->foreignId('tipo_id')->nullable();
             $table->enum('estado',['Sorteado','En Tramite','Para Firmar', 'Archivada'])->default('Sorteado');
             $table->string('descripcion');
 

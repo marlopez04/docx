@@ -15,11 +15,11 @@ class CreateCausasTable extends Migration
     {
         Schema::create('causas', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('id_fuero')->unsigned();
+            $table->integer('fuero_id')->unsigned();
             $table->string('numero_expediente');
             $table->string('actor_imputado');
             $table->string('demandado_victima');      
-            $table->integer('id_objeto_procesal')->unsigned();      
+            $table->integer('objeto_procesal_id')->unsigned();      
             $table->timestamps();
         });
     }

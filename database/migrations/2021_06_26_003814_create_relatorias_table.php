@@ -17,8 +17,8 @@ class CreateRelatoriasTable extends Migration
             $table->id();
             $table->string('descripcion');
             $table->enum('centro',['CAP', 'BRS', 'CJC', 'CJM'])->default('CAP');
-            $table->integer('id_vocalia')->unsigned();
-            $table->integer('id_oficina')->unsigned();                      
+            $table->integer('vocalia_id')->unsigned();
+            $table->integer('oficina_id')->unsigned();                      
             $table->timestamps();
         });
     }

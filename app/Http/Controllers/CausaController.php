@@ -25,8 +25,11 @@ class CausaController extends Controller
     {
       
         $causas = Causa::paginate();
-        $causas->load('fuero');
-        
+        $causas->load('fuero','sentencias');
+
+        //dd($causas);
+
+
         return view('front.causas.index')
         ->with('causas', $causas);
         
@@ -69,11 +72,11 @@ class CausaController extends Controller
 
         //se crea la causa
         $causa = new Causa();
-        $causa->id_fuero = $request->id_fuero;
+        $causa->fuero_id = $request->fuero_id;
         $causa->numero_expediente = $request->numero_expediente;
         $causa->actor_imputado =  $request->actor_imputado;
         $causa->demandado_victima =  $request->demandado_victima;
-        $causa->id_objeto_procesal =  $request->id_objeto_procesal;
+        $causa->objeto_procesal_id =  $request->objeto_procesal_id;
 
         //FALTA AGREGAR ANTES DE CREAR LA CAUSA, QUE CORROBORE QUE LA CAUSA NO ESTA CREADA
 
@@ -84,27 +87,27 @@ class CausaController extends Controller
         //se crea la sentencia
 
         $sentencia = new Sentencia();
-        $sentencia->id_causa = $causa->id;
+        $sentencia->causa_id = $causa->id;
         $sentencia->descripcion = "pingo en lata";
         $sentencia->fecha_sorteo = $request->fecha_sorteo;
         $sentencia->fecha_vencimiento = $request->fecha_vencimiento;
         $sentencia->instancia_sentencia = "1";
-        $sentencia->id_tipo = "1";
+        $sentencia->tipo_id = "1";
         $sentencia->save();
 
         //se carga la vocalia preopinante
         $RespSentencia = new RespSentencia();
-        $RespSentencia->id_sentencia = $sentencia->id;
-        $RespSentencia->id_oficina = $request->vocalia;
+        $RespSentencia->sentencia_id = $sentencia->id;
+        $RespSentencia->oficina_id = $request->vocalia;
         $RespSentencia->tipo = "Preopinante";
         $RespSentencia->save();
 
         $Movimiento = new Movimiento();
-        $Movimiento->id_sentencia = $sentencia->id;
+        $Movimiento->sentencia_id = $sentencia->id;
         $Movimiento->origen = 1;
         $Movimiento->destino = $request->vocalia;
         $Movimiento->motivo = "Pase para voto preopinante.";
-        $Movimiento->id_usuario = 1; // usuario que genera el movimiento (en este caso crea la causa)
+        $Movimiento->usuario_id = 1; // usuario que genera el movimiento (en este caso crea la causa)
         $Movimiento->save();
 
 

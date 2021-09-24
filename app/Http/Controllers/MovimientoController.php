@@ -56,7 +56,7 @@ class MovimientoController extends Controller
         $causa = Causa::Find($id);
         //dd($causa);
 
-        $sentenciaID = \DB::select("SELECT id FROM sentencias WHERE estado = 'Sorteado' AND id_causa = '{$id}'");
+        $sentenciaID = \DB::select("SELECT id FROM sentencias WHERE estado = 'Sorteado' AND causa_id = '{$id}'");
 
         //dd($sentenciaID[0]->id);
 /*

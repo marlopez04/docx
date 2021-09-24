@@ -15,8 +15,8 @@ class CreateRespSentenciasTable extends Migration
     {
         Schema::create('resp_sentencias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_sentencia')->nullable();
-            $table->foreignId('id_oficina')->nullable();
+            $table->foreignId('sentencia_id')->nullable();
+            $table->foreignId('oficina_id')->nullable();
             $table->enum('tipo',['Preopinante', 'Conformante'])->default('Preopinante');
             $table->timestamps();
         });

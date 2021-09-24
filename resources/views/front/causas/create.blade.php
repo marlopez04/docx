@@ -25,7 +25,7 @@
 
                                                     <label>Fuero</label>
                                 
-                                                    <select class="form-control" name="id_fuero" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
+                                                    <select class="form-control" name="fuero_id" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
                                                         <option selected></option>
                                                             @foreach ($fueros as $fuero)
 
@@ -41,7 +41,7 @@
 
                                                     <label>Objeto Procesal</label>
                                 
-                                                    <select class="form-control" name="id_objeto_procesal" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
+                                                    <select class="form-control" name="objeto_procesal_id" aria-label="Fuero" require="">                                                        <!-- Depende de que centro se seleccione -->
                                                         <option selected></option>
                                                             @foreach ($OProcesales as $OProcesal)
 

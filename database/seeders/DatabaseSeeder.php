@@ -102,59 +102,59 @@ class DatabaseSeeder extends Seeder
         $secretaria = new Secretaria();
         $secretaria->descripcion = "Secretaria";
         $secretaria->centro = "cap";
-        $secretaria->id_oficina = "1";
+        $secretaria->oficina_id = "1";
         $secretaria->save();
         
         //VOCALIAS
 
         $vocalia = new Vocalia();
         $vocalia->descripcion = "Vocalia1";
-        $vocalia->id_secretaria = "1";
-        $vocalia->id_oficina = "2";
+        $vocalia->secretaria_id = "1";
+        $vocalia->oficina_id = "2";
         $vocalia->save();
 
         $vocalia = new Vocalia();
         $vocalia->descripcion = "Vocalia2";
-        $vocalia->id_secretaria = "1";
-        $vocalia->id_oficina = "3";
+        $vocalia->secretaria_id = "1";
+        $vocalia->oficina_id = "3";
         $vocalia->save();
 
         $vocalia = new Vocalia();
         $vocalia->descripcion = "Vocalia3";
-        $vocalia->id_secretaria = "1";
-        $vocalia->id_oficina = "4";
+        $vocalia->secretaria_id = "1";
+        $vocalia->oficina_id = "4";
         $vocalia->save();
 
         //RELATORIAS
 
         $relatoria = new Relatoria();
         $relatoria->descripcion = "Relatoria1-1";
-        $relatoria->id_vocalia = "1";
-        $relatoria->id_oficina = "5";
+        $relatoria->vocalia_id = "1";
+        $relatoria->oficina_id = "5";
         $relatoria->save();
 
         $relatoria = new Relatoria();
         $relatoria->descripcion = "Relatoria1-2";
-        $relatoria->id_vocalia = "1";
-        $relatoria->id_oficina = "6";
+        $relatoria->vocalia_id = "1";
+        $relatoria->oficina_id = "6";
         $relatoria->save();
 
         $relatoria = new Relatoria();
         $relatoria->descripcion = "Relatoria2-1";
-        $relatoria->id_vocalia = "2";
-        $relatoria->id_oficina = "7";
+        $relatoria->vocalia_id = "2";
+        $relatoria->oficina_id = "7";
         $relatoria->save();
 
         $relatoria = new Relatoria();
         $relatoria->descripcion = "Relatoria2-2";
-        $relatoria->id_vocalia = "2";
-        $relatoria->id_oficina = "8";
+        $relatoria->vocalia_id = "2";
+        $relatoria->oficina_id = "8";
         $relatoria->save();
 
         $relatoria = new Relatoria();
         $relatoria->descripcion = "Relatoria2-2";
-        $relatoria->id_vocalia = "2";
-        $relatoria->id_oficina = "8";
+        $relatoria->vocalia_id = "2";
+        $relatoria->oficina_id = "8";
         $relatoria->save();
 
         //TIPO-SENTENCIA
@@ -192,7 +192,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "pingo@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "ADMIN";
-        $usuario->id_oficina = "1";
+        $usuario->oficina_id = "1";
         $usuario->save();
 
         $usuario = new User();
@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "pingo1@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "ADMIN";
-        $usuario->id_oficina = "1";
+        $usuario->oficina_id = "1";
         $usuario->save();
 
         $usuario = new User();
@@ -208,14 +208,14 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "secretario@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Secretaria";
-        $usuario->id_oficina = "1";
+        $usuario->oficina_id = "1";
 
         $usuario = new User();
         $usuario->name = "vocal1";
         $usuario->email = "vocal1@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocalia";
-        $usuario->id_oficina = "2";
+        $usuario->oficina_id = "2";
         $usuario->save();
 
         $usuario = new User();
@@ -223,7 +223,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "vocal2@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocalia";
-        $usuario->id_oficina = "3";
+        $usuario->oficina_id = "3";
         $usuario->save();
 
         $usuario = new User();
@@ -231,7 +231,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "vocal3@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocalia";
-        $usuario->id_oficina = "4";
+        $usuario->oficina_id = "4";
         $usuario->save();
 
 
@@ -240,7 +240,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator1@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "5";
+        $usuario->oficina_id = "5";
         $usuario->save();
 
 
@@ -249,7 +249,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator2@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "6";
+        $usuario->oficina_id = "6";
         $usuario->save();
 
         $usuario = new User();
@@ -257,7 +257,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator3@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "7";
+        $usuario->oficina_id = "7";
         $usuario->save();
 
         $usuario = new User();
@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator4@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "8";
+        $usuario->oficina_id = "8";
         $usuario->save();
 
         $usuario = new User();
@@ -273,7 +273,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator5@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "9";
+        $usuario->oficina_id = "9";
         $usuario->save();
 
         $usuario = new User();
@@ -281,7 +281,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "relator6@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Relator";
-        $usuario->id_oficina = "10";
+        $usuario->oficina_id = "10";
         $usuario->save();
 
 
@@ -290,7 +290,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "sbdar@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocal";
-        $usuario->id_oficina = "2";
+        $usuario->oficina_id = "2";
         $usuario->save();
 
         $usuario = new User();
@@ -298,7 +298,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "estofan@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocal";
-        $usuario->id_oficina = "3";
+        $usuario->oficina_id = "3";
         $usuario->save();
 
         $usuario = new User();
@@ -306,7 +306,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = "posse@pingo.com.ar";
         $usuario->password = "1234";
         $usuario->tipo = "Vocal";
-        $usuario->id_oficina = "4";
+        $usuario->oficina_id = "4";
         $usuario->save();
 
     }

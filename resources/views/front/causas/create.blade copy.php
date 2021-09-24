@@ -38,7 +38,7 @@
 
                                                     <label>Fuero</label>
                                 
-                                                    <select class="form-select" name="id_fuero" aria-label="Fuero" require="true">
+                                                    <select class="form-select" name="fuero_id" aria-label="Fuero" require="true">
                                                         <!-- Depende de que centro se seleccione -->
                                                         <option selected></option>
                                                             @foreach ($fueros as $fuero)
