@@ -29,7 +29,7 @@
                                                         <option selected></option>
                                                             @foreach ($fueros as $fuero)
 
-                                                            <option value="{{$fuero->id}}">{{ $fuero->descripcion}} </option>
+                                                            <option value="{{$fuero->id}}">{{ $fuero->descripcion ." - ".  $fuero->centro  }} </option>
 
                                                             @endforeach
 

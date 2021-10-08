@@ -23,22 +23,40 @@
                             <th>Actor/imputado</th>
                             <th>Demandado/Victima</th>
                             <th>Objeto Procesal</th>
-                            <th>Fecha y hora asignacion</th>
+                            <th>Tipo de Sentencia</th>
+                            <th>sorteo</th>
                             <th>vencimiento</th>
                         </thead>
                         <tbody>
-                        @foreach ($causas as $causa)
+                        @foreach ($sentencias as $sentencia)
                             <tr>
-                                <td>{{ $causa->fuero->descripcion }}</td>
-                                <td>{{ $causa->numero_expediente }}</td>
-                                <td>{{ $causa->actor_imputado }}</td>
-                                <td>{{ $causa->demandado_victima }}</td>
-                                <td>{{ $causa->objeto_procesal }}</td>
-                                <td>{{ $causa->created_at }}</td>
-                                <td></td>
+
+                            @foreach ($fueros as $fuero)
+
+                                @if ($sentencia->causa->fuero_id == $fuero->id)
+                                <td>{{ $fuero->descripcion }}</td>
+                                @endif
+                                
+                            @endforeach
+
+                                <td>{{ $sentencia->causa->numero_expediente }}</td>
+                                <td>{{ $sentencia->causa->actor_imputado }}</td>
+                                <td>{{ $sentencia->causa->demandado_victima }}</td>
+
+                                @foreach ($objetosP as $objetop)
+
+                                    @if ($sentencia->causa->objeto_procesal_id == $objetop->id)
+                                        <td>{{ $objetop->descripcion }}</td>
+                                    @endif
+
+                                @endforeach
+
+                                <td>{{ $sentencia->tiposentencia->descripcion }}</td>
+                                <td>{{ $sentencia->fecha_sorteo }}</td>
+                                <td>{{ $sentencia->fecha_vencimiento }}</td>
+                                
                                 <td>
-                                <a href="{{ route('movimientos.show', $causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Asignar</span></a>
-                                </td>
+                                <a href="{{ route('movimientos.show', $sentencia->causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Asignar</span></a>                                </td>
                             </tr>
                         @endforeach
                         </tbody>

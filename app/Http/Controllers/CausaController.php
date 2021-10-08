@@ -27,11 +27,26 @@ class CausaController extends Controller
         $causas = Causa::paginate();
         $causas->load('fuero','sentencias');
 
+        $fueros = Fuero::all();
+
         //dd($causas);
+
+        $sentencias = Sentencia::paginate();
+        $sentencias->load('causa','tiposentencia');
+
+        $objetosP = ObjetoProcesal::all();
+
+        //dd($objetosP);
+
+
+        //dd($sentencias);
 
 
         return view('front.causas.index')
-        ->with('causas', $causas);
+        ->with('causas', $causas)
+        ->with('sentencias', $sentencias)
+        ->with('fueros', $fueros)
+        ->with('objetosP', $objetosP);
         
     }
 
@@ -104,6 +119,7 @@ class CausaController extends Controller
 
         $Movimiento = new Movimiento();
         $Movimiento->sentencia_id = $sentencia->id;
+        $Movimiento->causa_id = $causa->id;
         $Movimiento->origen = 1;
         $Movimiento->destino = $request->vocalia;
         $Movimiento->motivo = "Pase para voto preopinante.";

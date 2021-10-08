@@ -23,3 +23,15 @@ demandado_victima
 objeto_procesal
 fecha_sorteo
 fecha_vencimiento
+
+
+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
+
+
+git branch -m master master
+git fetch https://github.com/marlopez04/docx.git
+git branch -u origin/master master
+git remote set-head origin -a
+
+
+git push --set-upstream docx master
