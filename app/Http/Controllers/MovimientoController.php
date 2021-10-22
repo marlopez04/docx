@@ -10,6 +10,9 @@ use App\Models\Fuero;
 use App\Models\Causa;
 use App\Models\Sentencia;
 use App\Models\Oficina;
+use App\Models\Movimiento;
+use App\Models\ObjetoProcesal;
+use App\Models\TipoSentencia;
 
 class MovimientoController extends Controller
 {
@@ -51,14 +54,42 @@ class MovimientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {           // show($id, $vigencia, $origen)
+                //vigencia va a ingresar para traer los archivados o los vigentes
+                //Origen va definir si trae los movimientos que recibe la oficna o los que envio la oficina
+
+
+        $movimientos = Movimiento::where('destino', $id)
+                             ->where('tipo', 'Vigente')
+                             ->orderBy('id', 'desc')
+                             ->get();
+
+        $movimientos->load('sentencia','causa');
+
+        //dd($movimientos);
+
+
+        $fueros = Fuero::all();
+        $objetosP = ObjetoProcesal::all();
+        $tiposentencias = TipoSentencia::all();
+        
+        return view('front.movimientos.show')
+        ->with('movimientos',$movimientos)
+        ->with('fueros', $fueros)
+        ->with('tiposentencias', $tiposentencias)
+        ->with('objetosP', $objetosP);
+        
+
+
+
+        /*
         //dd($id);
         $causa = Causa::Find($id);
         //dd($causa);
 
         $sentenciaID = \DB::select("SELECT id FROM sentencias WHERE estado = 'Sorteado' AND causa_id = '{$id}'");
 
-        //dd($sentenciaID[0]->id);
+        dd($sentenciaID[0]->id);
 /*
         $sentenciaID = Sentencia::select('id')
                                 ->where('id_causa', $id)
@@ -68,22 +99,27 @@ class MovimientoController extends Controller
 
 //        dd($sentenciaID);                                        
 
-        $sentencia = Sentencia::Find($sentenciaID[0]->id);
+
+//        $sentencia = Sentencia::Find($sentenciaID[0]->id);
         
-        $sentencia->load('causa');
+//        $sentencia->load('causa');
 
         //dd($sentencia);
 
         //dd($causa);
-
+/*
         $oficinas = Oficina::where('tipo', 'Vocalia')
         ->orderBy('id', 'desc')
         ->get();
+*/
 
+/*
         return view('front.vocalia.asignar')
         ->with('oficinas',$oficinas)
         ->with('sentencia', $sentencia)
         ->with('causa', $causa);
+*/
+        
     }
 
     /**
