@@ -10,7 +10,7 @@ class Movimiento extends Model
     use HasFactory;
 
     protected $table = "movimientos";
-    protected $fillable = ['causa_id','sentencia_id','origen','destino','fecha','motivo', 'usuario_id'];
+    protected $fillable = ['causa_id','sentencia_id','origen','destino','fecha','motivo','tipo', 'estado', 'archivo', 'usuario_id'];
     
 
     public function causa()

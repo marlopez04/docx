@@ -19,9 +19,11 @@ class CreateMovimientosTable extends Migration
             $table->foreignId('causa_id')->nullable();
             $table->foreignId('origen')->nullable();
             $table->foreignId('destino')->nullable();
-            $table->enum('tipo',['Vigente', 'Archivado'])->default('Vigente');
+            $table->enum('tipo',['Asignacion', 'Devolucion', 'Voto'])->default('Asignacion');
+            $table->enum('estado',['Vigente', 'Archivado'])->default('Vigente');
             $table->foreignId('usuario_id')->nullable();
             $table->string('motivo');
+            $table->string('archivo', 200);
             $table->timestamps();
         });
     }

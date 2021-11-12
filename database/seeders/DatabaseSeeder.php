@@ -209,6 +209,7 @@ class DatabaseSeeder extends Seeder
         $usuario->password = "1234";
         $usuario->tipo = "Secretaria";
         $usuario->oficina_id = "1";
+        $usuario->save();
 
         $usuario = new User();
         $usuario->name = "vocal1";
@@ -239,7 +240,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria1-1";
         $usuario->email = "relator1@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "5";
         $usuario->save();
 
@@ -248,7 +249,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria1-2";
         $usuario->email = "relator2@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "6";
         $usuario->save();
 
@@ -256,7 +257,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria2-1";
         $usuario->email = "relator3@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "7";
         $usuario->save();
 
@@ -264,7 +265,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria2-2";
         $usuario->email = "relator4@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "8";
         $usuario->save();
 
@@ -272,7 +273,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria3-1";
         $usuario->email = "relator5@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "9";
         $usuario->save();
 
@@ -280,7 +281,7 @@ class DatabaseSeeder extends Seeder
         $usuario->name = "relatoria3-2";
         $usuario->email = "relator6@pingo.com.ar";
         $usuario->password = "1234";
-        $usuario->tipo = "Relator";
+        $usuario->tipo = "Relatoria";
         $usuario->oficina_id = "10";
         $usuario->save();
 

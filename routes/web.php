@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CausaController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\SentenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/', function () {
 
 Route::resource('causas', CausaController::class);
 Route::resource('movimientos', MovimientoController::class);
+Route::get('movimientos/mov/{movi}/{mov}', [MovimientoController::class, 'mov']);
+Route::resource('sentencias', SentenciaController::class);
+
+Route::get('/users/{user}', [UserController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

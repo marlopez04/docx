@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Fuero;
+use App\Models\User;
 use App\Models\Causa;
 use App\Models\Sentencia;
 use App\Models\Oficina;
@@ -44,7 +45,38 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        
+
+        $Movimiento1 = Movimiento::find($request->movimiento);
+        $Movimiento1->estado = "Archivado";
+        $Movimiento1->save();
+
+        $Movimiento = new Movimiento();
+        $Movimiento->sentencia_id = $request->sentencia_id;
+        $Movimiento->causa_id = $request->causa_id;
+        $Movimiento->origen = $request->origen; // debe obtener en base al id de la oficina del usuario 
+        $Movimiento->destino = $request->destino;
+        $Movimiento->tipo = "Devolucion";
+        $Movimiento->motivo = $request->motivo; 
+        $Movimiento->usuario_id = $request->usuario_id; // usuario que genera el movimiento (en este caso crea la causa)
+        $Movimiento->save();
+
+        /*
+
+        if ($request->file('imagen'))
+        {
+            $file = $request->file('imagen');
+            $nombre = 'articulo_' . time() .'.' . $file->getClientOriginalExtension();
+            $path = public_path() . '/imagenes/articulos/';
+            $file->move($path, $nombre);     
+        } 
+
+        */
+
+
+        return redirect()->route('movimientos.show', $Movimiento->origen);        
+
     }
 
     /**
@@ -58,13 +90,19 @@ class MovimientoController extends Controller
                 //vigencia va a ingresar para traer los archivados o los vigentes
                 //Origen va definir si trae los movimientos que recibe la oficna o los que envio la oficina
 
+            /*
+                3 secretario
+                4 vocal
+                7 relator
+            */
+        $usuario = User::find(7);
 
         $movimientos = Movimiento::where('destino', $id)
-                             ->where('tipo', 'Vigente')
+                             ->where('estado', 'Vigente')
                              ->orderBy('id', 'desc')
                              ->get();
 
-        $movimientos->load('sentencia','causa');
+        $movimientos->load('sentencia','causa','origen');
 
         //dd($movimientos);
 
@@ -76,49 +114,11 @@ class MovimientoController extends Controller
         return view('front.movimientos.show')
         ->with('movimientos',$movimientos)
         ->with('fueros', $fueros)
+        ->with('usuario', $usuario)
         ->with('tiposentencias', $tiposentencias)
         ->with('objetosP', $objetosP);
         
 
-
-
-        /*
-        //dd($id);
-        $causa = Causa::Find($id);
-        //dd($causa);
-
-        $sentenciaID = \DB::select("SELECT id FROM sentencias WHERE estado = 'Sorteado' AND causa_id = '{$id}'");
-
-        dd($sentenciaID[0]->id);
-/*
-        $sentenciaID = Sentencia::select('id')
-                                ->where('id_causa', $id)
-                                ->where('estado', 'En Tramite' )
-                                ->get();
-*/
-
-//        dd($sentenciaID);                                        
-
-
-//        $sentencia = Sentencia::Find($sentenciaID[0]->id);
-        
-//        $sentencia->load('causa');
-
-        //dd($sentencia);
-
-        //dd($causa);
-/*
-        $oficinas = Oficina::where('tipo', 'Vocalia')
-        ->orderBy('id', 'desc')
-        ->get();
-*/
-
-/*
-        return view('front.vocalia.asignar')
-        ->with('oficinas',$oficinas)
-        ->with('sentencia', $sentencia)
-        ->with('causa', $causa);
-*/
         
     }
 
@@ -130,7 +130,32 @@ class MovimientoController extends Controller
      */
     public function edit($id)
     {
-        //
+           /*
+                3 secretario
+                4 vocal
+                7 relator
+            */
+
+        $usuario = User::find(7);
+
+        $movimiento = Movimiento::find($id);
+
+        $movimiento->load('sentencia','causa');
+
+        //dd($movimiento);
+
+        $fueros = Fuero::all();
+        $objetosP = ObjetoProcesal::all();
+        $tiposentencias = TipoSentencia::all();
+
+        return view('front.movimientos.devolver')
+        ->with('movimiento',$movimiento)
+        ->with('fueros', $fueros)
+        ->with('usuario', $usuario)
+        ->with('tiposentencias', $tiposentencias)
+        ->with('objetosP', $objetosP);
+
+
     }
 
     /**
@@ -140,9 +165,97 @@ class MovimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function mov($movi,$mov)
+    {
+     
+        /*
+        secretaria
+            1º pre opinante
+            2º secretaria vocalia 2
+            3º devolucion (vocalia)
+        vocalia
+            4º al relator
+            5º devolucion (secret)
+            6º devolucion (relat)
+            7º remision (voto)
+        relatoria
+            8º subir voto
+            9º corregir voto
+            10º devolucion
+        */
+
+        switch ($mov){
+            case '2': //secretaria -> vocalia 2
+                break;
+            case '3': //devolucion secretaria -> vocalia
+
+                return view('front.movimientos.devolver')
+                ->with('movimiento',$movimiento)
+                ->with('fueros', $fueros)
+                ->with('usuario', $usuario)
+                ->with('tiposentencias', $tiposentencias)
+                ->with('objetosP', $objetosP);
+
+                break;
+            case '4': //vocalia -> relator 
+                break;
+            case '5': //devolucion vocalia -> secretaria 
+
+                return view('front.movimientos.devolver')
+                ->with('movimiento',$movimiento)
+                ->with('fueros', $fueros)
+                ->with('usuario', $usuario)
+                ->with('tiposentencias', $tiposentencias)
+                ->with('objetosP', $objetosP);
+
+                break;
+            case '6': //devolucion vocalia -> relatoria
+                //se copia el archivo de la relatoria, y se lo asigna al movimiento nuevo. Aparte se borra el linck el archivo de la relatoria
+
+                return view('front.movimientos.devolver')
+                ->with('movimiento',$movimiento)
+                ->with('fueros', $fueros)
+                ->with('usuario', $usuario)
+                ->with('tiposentencias', $tiposentencias)
+                ->with('objetosP', $objetosP);
+
+                break;
+            case '7': //remision vocalia -> secretaria
+                //se copia el archivo de la relatoria, y se lo asigna al movimiento nuevo
+                break;
+            case '8': //subir voto relatoria -> vocalia
+                break;
+            case '9': //corregir voto relatoria -> vocalia
+                break;
+            case '10': //devolucion relatoria -> vocalia
+
+                return view('front.movimientos.devolver')
+                ->with('movimiento',$movimiento)
+                ->with('fueros', $fueros)
+                ->with('usuario', $usuario)
+                ->with('tiposentencias', $tiposentencias)
+                ->with('objetosP', $objetosP);
+
+                break;
+            default:
+                break;
+        }
+
+        $movimiento = Movimiento::find($movi);
+        dd($movi . "-----". $mov);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(Request $request, $id)
     {
-        //
+        //        
     }
 
     /**

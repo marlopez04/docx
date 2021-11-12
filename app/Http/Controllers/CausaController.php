@@ -120,7 +120,7 @@ class CausaController extends Controller
         $Movimiento = new Movimiento();
         $Movimiento->sentencia_id = $sentencia->id;
         $Movimiento->causa_id = $causa->id;
-        $Movimiento->origen = 1;
+        $Movimiento->origen = 1; // debe obtener en base al id de la oficina del usuario 
         $Movimiento->destino = $request->vocalia;
         $Movimiento->motivo = "Pase para voto preopinante.";
         $Movimiento->usuario_id = 1; // usuario que genera el movimiento (en este caso crea la causa)
@@ -166,7 +166,7 @@ class CausaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

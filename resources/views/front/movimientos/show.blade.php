@@ -3,7 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Movimientos</h1>
+    
+    <h1>{{ $usuario->tipo}}</h1>
+
 @stop
 
 @section('content')
@@ -17,6 +19,7 @@
                 <div class="card-body table-full-width table-responsive">
                     <table class="table table-hover table-striped">
                         <thead>
+                            <th>Ver</th>
                             <th>Fuero</th>
                             <th>Expediente</th>
                             <th>Actor/imputado</th>
@@ -28,7 +31,11 @@
                         </thead>
                         <tbody>
                         @foreach ($movimientos as $movimiento)
+                            
                             <tr>
+
+                                <td><a href="{{ route('sentencias.show', $movimiento->sentencia->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench"> <i class="fas fa-fw fa-lock"></i> </span>    </a></td>
+
 
                             @foreach ($fueros as $fuero)
 
@@ -63,7 +70,18 @@
                                 <td>{{ $movimiento->sentencia->fecha_vencimiento }}</td>
                                 
                                 <td>
-                                <a href="{{ route('movimientos.show', $movimiento->sentencia->causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Asignar</span></a>                                </td>
+                                    <a href="{{ route('movimientos.edit', $movimiento->id) }}" class="btn btn-danger"> <span class="glyphicon glyphicon-wrench">Devolver</span></a>
+
+                                    @if ($usuario->tipo == "Relator")
+
+                                        <a href="{{ route('movimientos.show', $movimiento->sentencia->causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Voto</span></a>
+
+                                    @else
+                                        <a href="{{ route('movimientos.show', $movimiento->sentencia->causa->id) }}" class="btn btn-warning"> <span class="glyphicon glyphicon-wrench">Asignar</span></a>
+                                    @endif
+
+                                    
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
